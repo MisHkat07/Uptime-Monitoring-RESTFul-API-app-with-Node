@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 //    Title = Uptime Monitoring App
 //   Descriptiion = A RESTFul API to monitor user defined link.
 
@@ -11,15 +10,15 @@ const app = {};
 
 // ------------------Configuration
 app.config = {
-    port: 3000,
+  port: 3000,
 };
 
 // ------------------Create Server
 app.createServer = () => {
-    const server = http.createServer(app.handleReqRes);
-    server.listen(app.config.port, () => {
-        console.log(`listening to port number ${app.config.port}`);
-    });
+  const server = http.createServer(app.handleReqRes);
+  server.listen(app.config.port, () => {
+    console.log(`listening to port number ${app.config.port}`);
+  });
 };
 
 // ------------------- handle Req Res
