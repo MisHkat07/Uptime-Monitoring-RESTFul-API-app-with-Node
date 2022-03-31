@@ -5,10 +5,13 @@
 const http = require('http');
 const { handleReqRes } = require('./Assisants/handleReqRes');
 const environtments = require('./Assisants/environments');
-
+const data = require('./lib/data');
 // ------------------App object - Module Scaffolding
 const app = {};
 
+data.create('test', 'newFile', { name: 'Bangladesh', language: 'Bangla' }, (err) => {
+  console.log('Error was', err);
+});
 // ------------------Create Server
 app.createServer = () => {
   const server = http.createServer(app.handleReqRes);
