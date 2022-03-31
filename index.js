@@ -9,8 +9,8 @@ const data = require('./lib/data');
 // ------------------App object - Module Scaffolding
 const app = {};
 
-data.create('test', 'newFile', { name: 'Bangladesh', language: 'Bangla' }, (err) => {
-  console.log('Error was', err);
+data.read('test', 'newFile', (err, data2) => {
+  console.log(err, data2);
 });
 // ------------------Create Server
 app.createServer = () => {
