@@ -2,6 +2,11 @@
   "dependencies": {
     "lodash": "^4.17.21"
   },
+  "scripts": {
+    "start": "SET NODE_ENV=staging&nodemon index",
+    "production": "SET NODE_ENV=production&node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "devDependencies": {
     "eslint": "7.2.0",
     "eslint-config-airbnb-base": "14.2.1",
@@ -13,10 +18,6 @@
   "name": "raw-node-api-project",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "start": "nodemon index",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "",
   "license": "ISC",
   "repository": {
