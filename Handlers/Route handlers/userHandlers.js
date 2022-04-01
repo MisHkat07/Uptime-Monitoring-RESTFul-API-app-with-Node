@@ -7,7 +7,7 @@ const { parseJSON } = require('../../Assistants/utilities');
 // module scaffolding
 const handler = {};
 
-handler.userHandler = (requestProperties, callback) => {
+handler.userHandlers = (requestProperties, callback) => {
   const acceptedMethods = ['get', 'post', 'put', 'delete'];
   if (acceptedMethods.indexOf(requestProperties.method) > -1) {
     handler._users[requestProperties.method](requestProperties, callback);
