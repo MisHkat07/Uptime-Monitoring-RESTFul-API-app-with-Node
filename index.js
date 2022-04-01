@@ -3,15 +3,11 @@
 
 // ------------------dependencies-
 const http = require('http');
-const { handleReqRes } = require('./Assisants/handleReqRes');
-const environtments = require('./Assisants/environments');
-const data = require('./lib/data');
+const { handleReqRes } = require('./Assistants/handleReqRes');
+const environtments = require('./Assistants/environments');
 // ------------------App object - Module Scaffolding
 const app = {};
 
-data.read('test', 'newFile', (err, data2) => {
-  console.log(err, data2);
-});
 // ------------------Create Server
 app.createServer = () => {
   const server = http.createServer(app.handleReqRes);

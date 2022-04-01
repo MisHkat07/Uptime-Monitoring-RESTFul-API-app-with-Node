@@ -1,9 +1,9 @@
 const handler = {};
 
 handler.notFoundHandler = (requestProperties, callback) => {
-  console.log('Not Found');
   callback(404, {
-    message: 'Requested url not found!',
+    message: 'Your requested URL was not found!',
   });
 };
+
 module.exports = handler;
