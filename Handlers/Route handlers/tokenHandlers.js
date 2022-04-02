@@ -57,13 +57,67 @@ handler._token.post = (requestProperties, callback) => {
   }
 };
 
-// @TODO: Authentication
-handler._token.get = (requestProperties, callback) => {};
+handler._token.get = (requestProperties, callback) => {
+  const id =
+    typeof requestProperties.queryStringObject.id === 'string' &&
+    requestProperties.queryStringObject.id.trim().length === 20
+      ? requestProperties.queryStringObject.id
+      : false;
+  if (id) {
+    data.read('tokens', id, (err, tokenData) => {
+      const token = { ...parseJSON(tokenData) };
+      if (!err && token) {
+        callback(200, token);
+      } else {
+        callback(404, {
+          error: 'Requested token was not found!',
+        });
+      }
+    });
+  } else {
+    callback(404, {
+      error: 'Requested token was not found!',
+    });
+  }
+};
 
-// @TODO: Authentication
-handler._token.put = (requestProperties, callback) => {};
+handler._token.put = (requestProperties, callback) => {
+  const id =
+    typeof requestProperties.body.id === 'string' &&
+    requestProperties.body.id.trim().length === 20
+      ? requestProperties.body.id
+      : false;
+  const extend = !!(
+    typeof requestProperties.body.extend === 'boolean' &&
+    requestProperties.body.extend === true
+  );
+  if (id && extend) {
+    data.read('tokens', id, (err1, tokenData) => {
+      const tokenObject = parseJSON(tokenData);
+      if (tokenObject.expires > Date.now()) {
+        tokenObject.expires = Date.now() + 60 * 60 * 1000;
+        data.update('tokens', id, tokenObject, (err2) => {
+          if (!err2) {
+            callback(200);
+          } else {
+            callback(500, {
+              error: 'Something went wrong!',
+            });
+          }
+        });
+      } else {
+        callback(400, {
+          error: 'Token has already expired!',
+        });
+      }
+    });
+  } else {
+    callback(400, {
+      error: 'There was a problem in your request!',
+    });
+  }
+};
 
-// @TODO: Authentication
 handler._token.delete = (requestProperties, callback) => {};
 
 module.exports = handler;
