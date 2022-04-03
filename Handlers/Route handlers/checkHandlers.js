@@ -1,7 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-
 const data = require('../../lib/data');
-const { hash } = require('../../Assistants/utilities');
 const { parseJSON, createRandomString } = require('../../Assistants/utilities');
 const { maxChecks } = require('../../Assistants/environments');
 const tokenHandlers = require('./tokenHandlers');
@@ -176,7 +174,6 @@ handler._check.get = (requestProperties, callback) => {
     });
   }
 };
-
 handler._check.put = (requestProperties, callback) => {
   const id =
     typeof requestProperties.body.id === 'string' &&
