@@ -1,23 +1,14 @@
-//    Title = Uptime Monitoring App
-//   Descriptiion = A RESTFul API to monitor user defined link.
+const server = require('./lib/server');
+const workers = require('./lib/worker');
 
-// ------------------dependencies-
-const http = require('http');
-const { handleReqRes } = require('./Assistants/handleReqRes');
-const environtments = require('./Assistants/environments');
-// ------------------App object - Module Scaffolding
 const app = {};
 
-// ------------------Create Server
-app.createServer = () => {
-  const server = http.createServer(app.handleReqRes);
-  server.listen(environtments.port, () => {
-    console.log(`listening to port number ${environtments.port}`);
-  });
+app.init = () => {
+  server.init();
+
+  workers.init();
 };
 
-// ------------------- handle Req Res
-app.handleReqRes = handleReqRes;
+app.init();
 
-// -------------------Starting server
-app.createServer();
+module.exports = app;
